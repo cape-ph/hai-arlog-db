@@ -1,7 +1,7 @@
-source("~/Projects/hai_arlog/TennPdfDataExtractor.r")
+source("~/Projects/hai-arlog-db/R/Extract/ExtractTennPdfData.R")
 library(tidyverse)
 
-# Example uniform processing function for the remaining data frames
+
 test_list <- c("OXA","beta-lactamase")
 prefix_list <- c("oxa","bla")
 
@@ -35,15 +35,12 @@ arln_process_dfs_to_row <- function(df_list) {
   
   # Process the results data frames uniformly
   results <- lapply(df_list[-1], results_processing)
-  
   fulljoin_result <- bind_rows(df_list[[1]],results)
-  
   wide_df <- fulljoin_result %>% pivot_wider(names_from = Keys, values_from = Values)
   
   # Return the results as a list
   return(wide_df)
 }
-
 
 # create processed data tables
 data_rows <- function(file_list){
@@ -68,7 +65,6 @@ fill_missing_columns <- function(df, all_columns) {
   
   return(new_df)
 }
-
 
 create_table_arln <-function(rows){
   # Get the data frame with the most columns

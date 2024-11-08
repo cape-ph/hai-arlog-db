@@ -1,4 +1,4 @@
-source("~/Projects/hai_arlog/PdfExtractTools.R")
+source("~/Projects/hai-arlog-db/R/Tools/ToolsPdfExtraction.R")
 
 tenn_arln_pdf_extractor <- function(pdf) {
   
@@ -38,3 +38,4 @@ if (n > 0){
 
 return(results_dfs)
 }
+

@@ -28,7 +28,6 @@ pdf_extract_lines_between <- function(lines, start_string, end_string) {
   }
 }
 
-
 pdf_split_lines_into_columns <- function(lines) {
   # Define a regex pattern for matching more than 15 spaces
   pattern <- "\\s{9,}"
@@ -86,7 +85,6 @@ select_rows_by_list <- function(data, col_name, value_list) {
 
 values_to_keep <- c("Patient Name", "Date of Birth", "Specimen Type", "Date Collected", "Date Received", "Date Reported")
 
-
 extract_accession_info <- function(lines) {
   # Find the line containing "Accession #"
   indices <- grep("Accession #", lines)
@@ -112,8 +110,6 @@ extract_accession_info <- function(lines) {
   return(accession_data)
 }
 
-
-
 get_facility_data <- function(data, col_name) {
   # Find the index of the "Facility" cell
   facility_index <- which(data[[col_name]] == "Facility:")
@@ -133,22 +129,23 @@ get_facility_data <- function(data, col_name) {
   }
 }
 
-culture_organism_list <- c("RESULT:Carbapenem Resistant Organism Culture","RESULT:Mycology Culture")
+CULTURE_ORGANISM_LIST <- c("RESULT:Carbapenem Resistant Organism Culture","RESULT:Mycology Culture")
 
-search_for_culture_organism <- function(lines, culture_organism_list) {
+search_for_culture_organism <- function(lines, CULTURE_ORGANISM_LIST) {
   # Initialize a list to store matching lines
   matching_lines <- list()
   
   # Loop through each line
   for (line in lines) {
     # Check if any fruit from the list is present in the line
-    if (any(grepl(paste(culture_organism_list, collapse = "|"), line, ignore.case = TRUE))) {
+    if (any(grepl(paste(CULTURE_ORGANISM_LIST, collapse = "|"), line, ignore.case = TRUE))) {
       matching_lines <- append(matching_lines, line)
     }
   }
   
   return(matching_lines)
 }
+
 # this function appears to exist in 2 places
 create_event_dataframe_from_lines <- function(lines) {
   # Initialize lists to store keys and values
@@ -172,7 +169,6 @@ create_event_dataframe_from_lines <- function(lines) {
   
   return(result_df)
 }
-
 
 extract_tables_from_lines <- function(lines) {
   # Initialize variables
@@ -220,7 +216,7 @@ drop_empty_rows <- function(tables) {
   return(cleaned_tables)
 }
 
-column_names <- c("Results", "Reference Range", "Performing Location")
+COLUMN_NAMES <- c("Results", "Reference Range", "Performing Location")
 
 add_first_line_as_column_name <- function(tables, table_index) {
   # Check if the specified table index is valid
@@ -239,7 +235,7 @@ add_first_line_as_column_name <- function(tables, table_index) {
       first_line <- gsub("ß", "beta", first_line)
     }
     
-    new_column_names <- c(first_line, column_names)  # Add the first line to the column names
+    new_column_names <- c(first_line, COLUMN_NAMES)  # Add the first line to the column names
     
     new_column_names[-1] <- paste(first_line, new_column_names[-1])  # Modify the rest of the column names
     
@@ -249,13 +245,12 @@ add_first_line_as_column_name <- function(tables, table_index) {
   }
 }
 
-
 parse_lines_to_dataframe <- function(lines) {
   # Initialize a list to store rows
   rows <- list()
   
   for (line in lines) {
-    # Trim leading/trailing whitespace and split by 5 or more spaces
+    # Trim leading/trailing white space and split by 5 or more spaces
     parts <- unlist(strsplit(trimws(line), "\\s{5,}"))
     
     # Ensure exactly 4 parts; fill with NA if necessary
@@ -277,7 +272,6 @@ parse_lines_to_dataframe <- function(lines) {
   
   return(result_df)
 }
-
 
 rename_dataframe_columns <- function(df, column_names) {
   # Check if the length of column_names matches the number of columns in the data frame
@@ -303,7 +297,6 @@ remove_lines_before_string <- function(lines, target_string) {
   }
 }
 
-
 remove_empty_lines <- function(lines) {
   # Filter out empty lines
   return(lines[nzchar(trimws(lines))])
@@ -315,8 +308,6 @@ add_spaces_to_lines <- function(lines) {
   
   return(modified_lines)  # Return the modified list of lines
 }
-
-
 
 create_dataframe_from_lines <- function(lines) {
   # Remove empty lines

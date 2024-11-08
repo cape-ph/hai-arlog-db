@@ -4,7 +4,7 @@ source("~/Projects/hai_arlog/CPOSeqReportExtractor.R")
 
 CsvOutputDir <- "~/Projects/hai_arlog/test_db/"
 
-create_tenn_arln_csv <- function(){
+create_tenn_arln <- function(){
   PdfArlnRaw <- "~/Projects/hai_arlog/data/PdfArln"
   
   setwd(PdfArlnRaw)
@@ -17,7 +17,7 @@ create_tenn_arln_csv <- function(){
   return(arln_table)
 }
 
-create_word_alert_csv <- function(){
+create_word_alert <- function(){
   WordAlertRaw <- "~/Projects/hai_arlog/data/WordAlert"
   
   setwd(WordAlertRaw)
@@ -30,7 +30,7 @@ create_word_alert_csv <- function(){
   return(results_bind)
 }
 
-create_excel_cpo_csv <- function(){
+create_excel_cpo <- function(){
   ExcelCpoRaw <- "~/Projects/hai_arlog/data/ExcelCpo"
   
   setwd(ExcelCpoRaw)
@@ -45,7 +45,7 @@ create_excel_cpo_csv <- function(){
   return(result_df)
 }
 
-create_sentinel_csv <- function(){
+create_sentinel <- function(){
   ExcelSentinelRaw <- "~/Projects/hai_arlog/data/ExcelSentinel"
   
   setwd(ExcelSentinelRaw)
@@ -58,7 +58,7 @@ create_sentinel_csv <- function(){
   return(results_bind)
 }
 
-create_cpo_seq_csv <- function(){
+create_cpo_seq <- function(){
   PdfCpoSeqRaw <- "~/Projects/hai_arlog/data/PdfCPOSeq"
   
   setwd(PdfCpoSeqRaw)
@@ -72,7 +72,7 @@ create_cpo_seq_csv <- function(){
   return(df)
 }
 
-create_web_portal_csv <- function(){
+create_web_portal <- function(){
   xl <- "~/Projects/hai_arlog/data/ExcelArlnWebPortal/ARLN Web Portal Example Linked.csv"
   exl <- read.csv(xl)
   return(exl)
