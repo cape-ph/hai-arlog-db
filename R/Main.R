@@ -6,9 +6,6 @@ xl_cpo <- process_excel_cpo(create_excel_cpo())
 xl_sent <- process_excel_sentinel(create_sentinel())
 pdf_cpo <- process_pdf_cpo_seq(create_cpo_seq())
 wb_prt <- process_web_portal(create_web_portal())
+
 data <- list(tenn_arln, wrd_alrt, xl_cpo, xl_sent, pdf_cpo, wb_prt)
 
-#wrd_alrt[, c()]
-
-# do stuff eith tenn_arln and wrd_alert -> newtable1
-# do stuff with new table 1 and excel cpo -> newtable 2

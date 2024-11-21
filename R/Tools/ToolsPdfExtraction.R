@@ -137,7 +137,7 @@ search_for_culture_organism <- function(lines, CULTURE_ORGANISM_LIST) {
   
   # Loop through each line
   for (line in lines) {
-    # Check if any fruit from the list is present in the line
+    # Check if any organism from the list is present in the line
     if (any(grepl(paste(CULTURE_ORGANISM_LIST, collapse = "|"), line, ignore.case = TRUE))) {
       matching_lines <- append(matching_lines, line)
     }

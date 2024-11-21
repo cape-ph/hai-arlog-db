@@ -2,5 +2,5 @@
 
 # Folders
 data/
-processed_data/
+processed/
 .DS_Store

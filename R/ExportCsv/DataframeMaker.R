@@ -1,11 +1,13 @@
-source("~/Projects/hai_arlog/WordExcelExtractor.R")
-source("~/Projects/hai_arlog/TennPdfProcessData.R")
-source("~/Projects/hai_arlog/CPOSeqReportExtractor.R")
+source("~/Projects/hai-arlog-db/R/Extract/ExtractXlsx.R")
+source("~/Projects/hai-arlog-db/R/Extract/ExtractDocx.R")
+source("~/Projects/hai-arlog-db/R/Extract/ExtractCpoSeqReport.R")
+source("~/Projects/hai-arlog-db/R/Extract/ExtractTennPdfData.R")
+source("~/Projects/hai-arlog-db/R/Extract/CombineTennPdfData.R")
 
-CsvOutputDir <- "~/Projects/hai_arlog/test_db/"
+#CsvOutputDir <- "~/Projects/hai-arlog-db/test_db/"
 
 create_tenn_arln <- function(){
-  PdfArlnRaw <- "~/Projects/hai_arlog/data/PdfArln"
+  PdfArlnRaw <- "~/Projects/hai-arlog-db/data/PdfArln"
   
   setwd(PdfArlnRaw)
   file_list <- list.files()
@@ -18,7 +20,7 @@ create_tenn_arln <- function(){
 }
 
 create_word_alert <- function(){
-  WordAlertRaw <- "~/Projects/hai_arlog/data/WordAlert"
+  WordAlertRaw <- "~/Projects/hai-arlog-db/data/WordAlert"
   
   setwd(WordAlertRaw)
   file_list <- list.files()
@@ -31,7 +33,7 @@ create_word_alert <- function(){
 }
 
 create_excel_cpo <- function(){
-  ExcelCpoRaw <- "~/Projects/hai_arlog/data/ExcelCpo"
+  ExcelCpoRaw <- "~/Projects/hai-arlog-db/data/ExcelCpo"
   
   setwd(ExcelCpoRaw)
   file_list <- list.files()
@@ -46,7 +48,7 @@ create_excel_cpo <- function(){
 }
 
 create_sentinel <- function(){
-  ExcelSentinelRaw <- "~/Projects/hai_arlog/data/ExcelSentinel"
+  ExcelSentinelRaw <- "~/Projects/hai-arlog-db/data/ExcelSentinel"
   
   setwd(ExcelSentinelRaw)
   file_list <- list.files()
@@ -59,7 +61,7 @@ create_sentinel <- function(){
 }
 
 create_cpo_seq <- function(){
-  PdfCpoSeqRaw <- "~/Projects/hai_arlog/data/PdfCPOSeq"
+  PdfCpoSeqRaw <- "~/Projects/hai-arlog-db/data/PdfCPOSeq"
   
   setwd(PdfCpoSeqRaw)
   file_list <- list.files()
@@ -73,15 +75,15 @@ create_cpo_seq <- function(){
 }
 
 create_web_portal <- function(){
-  xl <- "~/Projects/hai_arlog/data/ExcelArlnWebPortal/ARLN Web Portal Example Linked.csv"
+  xl <- "~/Projects/hai-arlog-db/data/ExcelArlnWebPortal/ARLN Web Portal Example Linked.csv"
   exl <- read.csv(xl)
   return(exl)
 }
 
-provisional_csv_writer <- function() {
-  create_tenn_arln_csv()
-  create_word_alert_csv()
-  create_excel_cpo_csv()
-  create_sentinel_csv()
-  create_cpo_seq_csv()
-}
+#provisional_csv_writer <- function() {
+#  create_tenn_arln_csv()
+#  create_word_alert_csv()
+#  create_excel_cpo_csv()
+#  create_sentinel_csv()
+#  create_cpo_seq_csv()
+#}

@@ -14,7 +14,7 @@ selection_add_accession_num <- bind_rows(selection,accession_num)
 pdf_facility <- get_facility_data(extract_table, "Keys")
 table_add_facility <- bind_rows(selection_add_accession_num,pdf_facility)
 
-pdf_organism_culture <- search_for_culture_organism(lines, culture_organism_list)
+pdf_organism_culture <- search_for_culture_organism(lines, CULTURE_ORGANISM_LIST)
 pdf_organism_culture_result <- create_event_dataframe_from_lines(pdf_organism_culture)
 table_add_culture_organism <- bind_rows(table_add_facility, pdf_organism_culture_result)
 
