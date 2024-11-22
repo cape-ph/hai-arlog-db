@@ -1,7 +1,13 @@
-# Files 
+# Files
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+*.tar.gz
 
 # Folders
 data/
 processed/
 .DS_Store
-.Rproj.user
+/inst/doc/
+/vignettes/
