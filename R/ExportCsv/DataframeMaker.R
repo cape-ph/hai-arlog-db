@@ -43,51 +43,8 @@ create_excel_cpo <- function(){
 
   results <- lapply(file_list, excel_cpo_extractor)
 
-  print("length of results")
-  print(length(results))
-  print('column name of results 1')
-  print(colnames(results[[1]]))
-  print("****************")
-  print('column name of results 2')
-  print(colnames(results[[2]]))
-
-  # no bind here, only one file
-
-  all_identical <- TRUE
-
-  # Compare each element of the results list to the first element
-  for (i in 2:length(results)) {
-    # Compare the current element with the first one
-    comparison <- all.equal(results[[1]], results[[i]])
-
-    # If any comparison is not identical, set the flag to FALSE and break the loop
-    if (comparison != TRUE) {
-      all_identical <- FALSE
-      print(paste("Difference found between result 1 and result", i))
-      print(comparison)  # Print the differences
-      break  # Exit the loop after the first non-identical comparison
-    }
-  }
-
-  # After the loop, check if all elements were identical
-  if (all_identical) {
-    print("All elements are identical.")
-  } else {
-    print("There are differences between the elements.")
-  }
-
-
-
   results_bind <- bind_rows(results)
-  print("colnames results bind")
-  print(colnames(results_bind))
-  #print("dataframe maker 1")
-  #print(results_bind)
   result_df <- as.data.frame(results_bind)
-
-  #result_df <- as.data.frame(results)
-  #print("dataframe maker 2")
-  #print(result_df)
 
   #write_csv(result_df, paste0(CsvOutputDir,"excel_cpo.csv"))
   return(result_df)
@@ -111,17 +68,20 @@ create_cpo_seq <- function(){
 
   setwd(PdfCpoSeqRaw)
   file_list <- list.files()
-  pdf_file_path <- file_list
-
-  pdf <- pdf_text(pdf_file_path)
-  df <- tenn_cpo_seq_extractor(pdf)
+  pdf_list <- lapply(file_list, pdf_text)
+  pdf_tables <- lapply(pdf_list, tenn_cpo_seq_extractor)
+  results_bind <- bind_rows(pdf_tables)
 
   #write_csv(df, paste0(CsvOutputDir,"cpo_seq.csv"))
-  return(df)
+  return(results_bind)
 }
 
 create_web_portal <- function(){
-  xl <- "~/Projects/hai-arlog-db/data/ExcelArlnWebPortal/ARLN Web Portal Example Linked.csv"
-  exl <- read.csv(xl)
-  return(exl)
+  WebPortalRaw <- "~/Projects/hai-arlog-db/data/ExcelArlnWebPortal/"
+
+  setwd(WebPortalRaw)
+  file_list <- list.files()
+  xl_list <- lapply(file_list, read.csv)
+  results_bind <- bind_rows(xl_list)
+  return(results_bind)
 }

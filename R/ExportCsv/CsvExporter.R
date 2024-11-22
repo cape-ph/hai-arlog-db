@@ -26,31 +26,16 @@ process_word_alert <- function(word_alert_df) {
 }
 
 process_excel_cpo <- function(cpo_df) {
-  # one file
-  # date_columns <- c("DATE_SPECIMEN_RECEIVED", "DATE_REPORTED",
-  #                  "DATE_OF_BIRTH", "DATE_OF_COLLECTION_MM_DD_YYYY_")
-
-  # multiple files
   date_columns <- c("DATE_SPECIMEN_RECEIVED", "DATE_REPORTED",
                     "DATE_OF_BIRTH", "DATE_OF_COLLECTION_(MM/DD/YYYY)")
 
-  colnames(cpo_df)
   s1 <- clean_excel_column_names(cpo_df)
-  print(colnames(s1))
   s2 <- capitalize_column_names(s1)
-  print(colnames(s2))
   s3 <- replace_dob_with_date_of_birth(s2)
-  print(colnames(s3))
   s4 <- replace_double_underscore(s3)
-  print(colnames(s4))
   s5 <- replace_spaces_with_underscores(s4)
-  print(colnames(s5))
   s6 <- replace_excel_dots_with_underscores(s5)
-  print(colnames(s6))
-  #print("csvexporter")
-  #print(s6)
   s7 <- convert_excel_dates(s6, date_columns)
-  print(colnames(s7))
 
   write.csv(s7, paste0(CsvOutputDir,"excel_cpo.csv"), row.names = FALSE)
   return(s7)
@@ -86,20 +71,4 @@ process_web_portal <- function(df){
   return(s4)
 }
 
-
-# for testing purposes only
-#provisional_postproc_csv_writer <- function() {
-#  print("tenn arln")
-#  process_tenn_arln(create_tenn_arln_csv())
-#  print("word alert")
-#  process_word_alert(create_word_alert_csv())
-#  print("excel cpo")
-#  process_excel_cpo(create_excel_cpo_csv())
-#  print("excel sentinel")
-#  process_excel_sentinel(create_sentinel_csv())
-#  print("pdf cpo")
-#  process_pdf_cpo_seq(create_cpo_seq_csv())
-#  print("process web portal")
-#  process_web_portal(create_web_portal_csv())
-#}
 
