@@ -1,9 +1,15 @@
-source("~/Projects/hai-arlog-db/R/Tools/ToolsDataProcessing.R")
+source('~/Projects/haiarlogdb/R/Tools/ToolsDataProcessing.R')
 
-CsvOutputDir <- "~/Projects/hai-arlog-db/processed/"
+CsvOutputDir <- "~/Projects/haiarlogdb/processed/"
 
-
-
+#' Title
+#'
+#' @param tenn_arln_df
+#'
+#' @return
+#' @export
+#'
+#' @examples
 process_tenn_arln <- function(tenn_arln_df) {
   s1 <- replace_spaces_with_underscores(tenn_arln_df)
   s2 <- replace_hash_with_num(s1)

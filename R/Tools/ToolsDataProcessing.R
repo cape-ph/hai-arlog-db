@@ -1,4 +1,4 @@
-source("~/Projects/hai-arlog-db/R/ExportCsv/DataframeMaker.R")
+source("~/Projects/haiarlogdb/R/ExportCsv/DataframeMaker.R")
 library(lubridate)
 
 replace_spaces_with_underscores <- function(df) {
@@ -54,7 +54,7 @@ convert_date_columns <- function(df, date_columns, date_format = "%m-%d-%Y") {
 clean_excel_column_names <- function(df, replace_with = "_") {
   # Remove '\r' and '\n' characters from column names
   colnames(df) <- gsub("[\r\n]", replace_with, colnames(df))
-  
+
   return(df)
 }
 
@@ -101,6 +101,6 @@ cut_off_time <- function(df, datetime_columns) {
       warning(paste("Column", col, "not found in the dataframe"))
     }
   }
-  
+
   return(df)
 }

@@ -1,7 +1,7 @@
-source("~/Projects/hai-arlog-db/R/Tools/ToolsPdfExtraction.R")
+source("~/Projects/haiarlogdb/R/Tools/ToolsPdfExtraction.R")
 
 tenn_arln_pdf_extractor <- function(pdf) {
-  
+
 lines <- unlist(strsplit(pdf, "\n"))
 result <- pdf_extract_lines_between(lines, "Accession", "Key")
 result_df <- pdf_split_lines_into_columns(result)

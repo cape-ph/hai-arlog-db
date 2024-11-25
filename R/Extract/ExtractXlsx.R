@@ -1,4 +1,4 @@
-source("~/Projects/hai-arlog-db/R/Tools/ToolsXlsx.R")
+source("~/Projects/haiarlogdb/R/Tools/ToolsXlsx.R")
 library(openxlsx)
 
 excel_cpo_extractor <- function(excel_file_path) {

@@ -1,4 +1,4 @@
-source("~/Projects/hai-arlog-db/R/ExportCsv/CsvExporter.R")
+source('~/Projects/haiarlogdb/R/ExportCsv/CsvExporter.R')
 
 export_data <- function() {
   tenn_arln <- process_tenn_arln(create_tenn_arln())
