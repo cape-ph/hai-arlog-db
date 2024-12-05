@@ -1,10 +1,17 @@
-source("~/Projects/hai-arlog-db/R/ExportCsv/CsvExporter.R")
+EXCEL_ARLN_WEB_PORTAL_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/ExcelArlnWebPortal"
+EXCEL_CPO_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/ExcelCpo"
+EXCEL_SENTINEL_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/ExcelSentinel"
+PDF_ARLN_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/PdfArln"
+PDF_CPO_SEQ_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/PdfCpoSeq"
+WORD_ALERT_DIR = "/Users/edonate3/Documents/CAPE/HAI_Data/WordAlert"
 
-export_data <- function() {
-  tenn_arln <- process_tenn_arln(create_tenn_arln())
-  wrd_alrt <- process_word_alert(create_word_alert())
-  xl_cpo <- process_excel_cpo(create_excel_cpo())
-  xl_sent <- process_excel_sentinel(create_sentinel())
-  pdf_cpo <- process_pdf_cpo_seq(create_cpo_seq())
-  wb_prt <- process_web_portal(create_web_portal())
+CSV_OUTPUT_DIR = "/Users/edonate3/Documents/CAPE/HAI_Processed/"
+
+export_data <- function(CSV_OUTPUT_DIR) {
+  process_tenn_arln(create_tenn_arln(PDF_ARLN_DIR), CSV_OUTPUT_DIR)
+  process_word_alert(create_word_alert(WORD_ALERT_DIR), CSV_OUTPUT_DIR)
+  process_excel_cpo(create_excel_cpo(EXCEL_CPO_DIR), CSV_OUTPUT_DIR)
+  process_excel_sentinel(create_sentinel(EXCEL_SENTINEL_DIR), CSV_OUTPUT_DIR)
+  process_pdf_cpo_seq(create_cpo_seq(PDF_CPO_SEQ_DIR), CSV_OUTPUT_DIR)
+  process_web_portal(create_web_portal(EXCEL_ARLN_WEB_PORTAL_DIR), CSV_OUTPUT_DIR)
 }
